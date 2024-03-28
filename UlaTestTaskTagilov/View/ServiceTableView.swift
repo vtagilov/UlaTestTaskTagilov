@@ -11,7 +11,7 @@ final class ServiceTableView: UITableView {
     private var models = [ServiceModel]()
     
     init() {
-        super.init(frame: .zero, style: .grouped)
+        super.init(frame: .zero, style: .plain)
         register(ServiceTableViewCell.self, forCellReuseIdentifier: ServiceTableViewCell.identifier)
         self.delegate = self
         self.dataSource = self
@@ -42,7 +42,11 @@ extension ServiceTableView: UITableViewDelegate, UITableViewDataSource {
         return 80.0
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(models[indexPath.row])
+        let model = models[indexPath.row]
+        if let url = URL(string: model.link) {
+            UIApplication.shared.open(url)
+        }
+        tableView.cellForRow(at: indexPath)?.isSelected = false
         return
     }
 }
