@@ -12,6 +12,9 @@
 		E7FF4FC22BB426A100255A7D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FF4FC12BB426A100255A7D /* ViewController.swift */; };
 		E7FF4FC72BB426A200255A7D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7FF4FC62BB426A200255A7D /* Assets.xcassets */; };
 		E7FF4FCA2BB426A200255A7D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7FF4FC82BB426A200255A7D /* LaunchScreen.storyboard */; };
+		E7FF4FD82BB42E1F00255A7D /* ServiceTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FF4FD72BB42E1F00255A7D /* ServiceTableView.swift */; };
+		E7FF4FDA2BB42E3B00255A7D /* ServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FF4FD92BB42E3B00255A7D /* ServiceModel.swift */; };
+		E7FF4FDC2BB42F0C00255A7D /* ServiceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FF4FDB2BB42F0C00255A7D /* ServiceTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,9 @@
 		E7FF4FC62BB426A200255A7D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E7FF4FC92BB426A200255A7D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E7FF4FCB2BB426A200255A7D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E7FF4FD72BB42E1F00255A7D /* ServiceTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceTableView.swift; sourceTree = "<group>"; };
+		E7FF4FD92BB42E3B00255A7D /* ServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceModel.swift; sourceTree = "<group>"; };
+		E7FF4FDB2BB42F0C00255A7D /* ServiceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +81,8 @@
 		E7FF4FD22BB42C2F00255A7D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E7FF4FD72BB42E1F00255A7D /* ServiceTableView.swift */,
+				E7FF4FDB2BB42F0C00255A7D /* ServiceTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -82,6 +90,7 @@
 		E7FF4FD32BB42C3300255A7D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E7FF4FD92BB42E3B00255A7D /* ServiceModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -166,7 +175,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7FF4FDA2BB42E3B00255A7D /* ServiceModel.swift in Sources */,
+				E7FF4FDC2BB42F0C00255A7D /* ServiceTableViewCell.swift in Sources */,
 				E7FF4FC22BB426A100255A7D /* ViewController.swift in Sources */,
+				E7FF4FD82BB42E1F00255A7D /* ServiceTableView.swift in Sources */,
 				E7FF4FBE2BB426A100255A7D /* AppDelegate.swift in Sources */,
 				E7FF4FC02BB426A100255A7D /* SceneDelegate.swift in Sources */,
 			);
