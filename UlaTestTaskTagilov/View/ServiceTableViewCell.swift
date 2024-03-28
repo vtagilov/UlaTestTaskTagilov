@@ -21,12 +21,37 @@ final class ServiceTableViewCell: UITableViewCell {
     }
     
     func configureCell(model: ServiceModel) {
-        icon.image = UIImage(systemName: "network")
+        fetchIcon(url: model.icon_url)
         nameLabel.text = model.name
         discriptionLabel.text = model.description
     }
     
+    private func setIcon(image: UIImage = UIImage(systemName: "wifi.exclamationmark")!) {
+        DispatchQueue.main.async {
+            self.icon.image = image
+        }
+    }
+    
+    private func fetchIcon(url: String) {
+        NetworkManager.fetchData(urlString: url) { responce in
+            if responce.error != nil {
+                self.setIcon()
+                return
+            }
+            guard let data = responce.data else {
+                self.setIcon()
+                return
+            }
+            guard let image = UIImage(data: data) else {
+                self.setIcon()
+                return
+            }
+            self.setIcon(image: image)
+        }
+    }
+    
     private func setUpUI() {
+        self.backgroundColor = .black
         selectView.contentMode = .scaleAspectFit
         selectView.image = UIImage(systemName: "chevron.right")
         selectView.tintColor = .gray
@@ -41,8 +66,8 @@ final class ServiceTableViewCell: UITableViewCell {
 extension ServiceTableViewCell {
     private func configureConstraints() {
         enum Constants {
-            static let verticalOffset = 4.0
-            static let horizontalOffset = 16.0
+            static let verticalOffset = 12.0
+            static let horizontalOffset = 8.0
             static let horizontalSpacing = 16.0
             static let iconSize = 48.0
             static let selectViewSize = 16.0

@@ -12,8 +12,33 @@ final class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.setModels([.init(name: "ВКонтакте", description: "Самая популярная соцсеть и первое суперприложение в России", link: "https://vk.com/", icon_url: "https://publicstorage.hb.bizmrg.com/sirius/vk.png")])
         configureConstraints()
+        fetchServices()
+        self.title = "Сервисы"
+    }
+    
+    private func setError(error: NetworkError) {
+        print("setError")
+    }
+    
+    private func fetchServices() {
+        NetworkManager.fetchServices { responce in
+            if let error = responce.error {
+                self.setError(error: error)
+                return
+            }
+            guard let data = responce.data else {
+                self.setError(error: .dataEmpty)
+                return
+            }
+            guard let models = ServiceResponseParser.parseWeatherData(data) else {
+                self.setError(error: .dataEmpty)
+                return
+            }
+            DispatchQueue.main.async {
+                self.tableView.setModels(models.body.services)
+            }
+        }
     }
 }
 

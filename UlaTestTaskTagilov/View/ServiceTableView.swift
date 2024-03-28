@@ -15,6 +15,7 @@ final class ServiceTableView: UITableView {
         register(ServiceTableViewCell.self, forCellReuseIdentifier: ServiceTableViewCell.identifier)
         self.delegate = self
         self.dataSource = self
+        self.showsVerticalScrollIndicator = false
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -39,5 +40,9 @@ extension ServiceTableView: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80.0
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(models[indexPath.row])
+        return
     }
 }
