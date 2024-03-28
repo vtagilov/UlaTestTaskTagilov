@@ -9,19 +9,25 @@ import UIKit
 
 final class ViewController: UIViewController {
     private let tableView = ServiceTableView()
+    internal var errorView = ErrorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureConstraints()
         fetchServices()
+        errorView.delegate = self
+        errorView.isHidden = true
         self.title = "Сервисы"
     }
     
     private func setError(error: NetworkError) {
-        print("setError")
+        DispatchQueue.main.async {
+            self.errorView.configureView(error: error)
+            self.errorView.isHidden = false
+        }
     }
     
-    private func fetchServices() {
+    internal func fetchServices() {
         NetworkManager.fetchServices { responce in
             if let error = responce.error {
                 self.setError(error: error)
@@ -44,7 +50,11 @@ final class ViewController: UIViewController {
 
 extension ViewController {
     private func configureConstraints() {
-        for subview in [tableView] {
+        enum Constants {
+            static let errorViewHeight = 150.0
+            static let errorViewWidth = 250.0
+        }
+        for subview in [tableView, errorView] {
             subview.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview(subview)
         }
@@ -52,7 +62,12 @@ extension ViewController {
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            errorView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            errorView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            errorView.heightAnchor.constraint(equalToConstant: Constants.errorViewHeight),
+            errorView.widthAnchor.constraint(equalToConstant: Constants.errorViewWidth)
         ])
     }
 }

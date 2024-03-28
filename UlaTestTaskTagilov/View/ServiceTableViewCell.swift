@@ -51,7 +51,6 @@ final class ServiceTableViewCell: UITableViewCell {
     }
     
     private func setUpUI() {
-        self.backgroundColor = .black
         selectView.contentMode = .scaleAspectFit
         selectView.image = UIImage(systemName: "chevron.right")
         selectView.tintColor = .gray
@@ -73,7 +72,6 @@ extension ServiceTableViewCell {
             static let selectViewSize = 16.0
         }
         let nameLabelHeight = (contentView.frame.height - Constants.verticalOffset * 2) / 3
-        let discriptionLabelHeight = nameLabelHeight * 2
         for subview in [icon, nameLabel, discriptionLabel, selectView] {
             subview.translatesAutoresizingMaskIntoConstraints = false
             contentView.addSubview(subview)
@@ -90,7 +88,7 @@ extension ServiceTableViewCell {
             nameLabel.trailingAnchor.constraint(equalTo: selectView.leadingAnchor, constant: -Constants.horizontalSpacing),
             
             discriptionLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor),
-            discriptionLabel.heightAnchor.constraint(equalToConstant: discriptionLabelHeight),
+            discriptionLabel.bottomAnchor.constraint(greaterThanOrEqualTo: contentView.bottomAnchor, constant: -Constants.verticalOffset),
             discriptionLabel.leadingAnchor.constraint(equalTo: icon.trailingAnchor, constant: Constants.horizontalSpacing),
             discriptionLabel.trailingAnchor.constraint(equalTo: selectView.leadingAnchor, constant: -Constants.horizontalSpacing),
             
